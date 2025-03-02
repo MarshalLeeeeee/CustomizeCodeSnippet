@@ -4,8 +4,8 @@ import re
 import yaml
 import json
 
-VSCODE_PATH = './vscode/snippets.json'
-SUBLIME_PATH = './sublime'
+VSCODE_DIR = './vscode'
+SUBLIME_DIR = './sublime'
 SUBLIME_TEMPLATE = '''<snippet>
 	<content><![CDATA[
 {0}
@@ -16,7 +16,7 @@ SUBLIME_TEMPLATE = '''<snippet>
 	<scope>source.python</scope>
 </snippet>
 '''
-DOC_PATH = './doc/snippets.md'
+DOC_DIR = './doc'
 DOC_TEMPLATE = '''# Code Snippet Generator
 Boost developer productivity by automating the insertion of commonly used code snippets. 
 It supports customizable snippets for various programming languages, making repetitive coding tasks faster and error-free.
@@ -66,11 +66,13 @@ class Generator(object):
 		print('>>>> Generate snippets Over.')
 
 	def _generate_for_sublime(self):
+		if not os.path.exists(SUBLIME_DIR):
+			os.makedirs(SUBLIME_DIR)
 		for _data in self._data.values():
 			_name = _data['name']
 			_prefix = _data['prefix']
 			_body = _data['body']
-			_sublime_snippet_name = os.path.join(SUBLIME_PATH, _name + '.sublime-snippet')
+			_sublime_snippet_name = os.path.join(SUBLIME_DIR, _name + '.sublime-snippet')
 			with open(_sublime_snippet_name, 'w') as _file:
 				_file.write(SUBLIME_TEMPLATE.format(_body, _prefix))
 
@@ -85,7 +87,9 @@ class Generator(object):
 			_json_dict[_name] = {}
 			_json_dict[_name]['prefix'] = _prefix
 			_json_dict[_name]['body'] = _body_format
-		with open(VSCODE_PATH, 'w') as _file:
+		if not os.path.exists(VSCODE_DIR):
+			os.makedirs(VSCODE_DIR)
+		with open(os.path.join(VSCODE_DIR, 'snippets.json'), 'w') as _file:
 			json.dump(_json_dict, _file, indent=4, ensure_ascii=False)
 
 	def _generate_doc(self):
@@ -95,7 +99,9 @@ class Generator(object):
 			_body = _data['body']
 			_doc_body += DOC_SNIPPET_TEMPLATE.format(_prefix, _body)
 		_doc = DOC_TEMPLATE.format(_doc_body)
-		with open(DOC_PATH, 'w') as _file:
+		if not os.path.exists(DOC_DIR):
+			os.makedirs(DOC_DIR)
+		with open(os.path.join(DOC_DIR, 'snippets.md'), 'w') as _file:
 			_file.write(_doc)
 
 if __name__ == '__main__':

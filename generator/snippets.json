@@ -1,0 +1,45 @@
+{
+    "cpp_class": {
+        "prefix": "cppcls",
+        "body": [
+            "class ${1:xxx} {",
+            "public:",
+            "\t${1:xxx}();",
+            "\t~${1:xxx}();",
+            "private:",
+            "\t//",
+            "};"
+        ]
+    },
+    "cpp_header_guards": {
+        "prefix": "cppguards",
+        "body": [
+            "/* ${1:xxx} */",
+            "#ifndef _${1:xxx}_H_",
+            "#define _${1:xxx}_H_",
+            "",
+            "#endif"
+        ]
+    },
+    "python_class": {
+        "prefix": "pycls",
+        "body": [
+            "class ${1:xxx}(object):",
+            "\tpass"
+        ]
+    },
+    "python_function": {
+        "prefix": "pyfunc",
+        "body": [
+            "def ${1:xxx}():",
+            "\tpass"
+        ]
+    },
+    "python_member_function": {
+        "prefix": "pymfunc",
+        "body": [
+            "def ${1:xxx}(self):",
+            "\tpass"
+        ]
+    }
+}
