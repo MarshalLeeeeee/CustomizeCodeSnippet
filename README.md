@@ -14,7 +14,7 @@ A python script that helps developer to customize snippet configuration easily. 
 Enjoy a quick start with the following steps:
 
 ## Puglin preperation
-Install ```./vscode/xxx.vsix``` in vscode.
+Install ```./vscode/customizecodesnippet-0.0.1.vsix``` in vscode.
 
 ## Puglin configuration (optional)
 Configure snippet path (absolute path) in plugin Settings (```@ext:undefined_publisher.customizecodesnippet```). By default, the snippet path is  ```[ extension_path ]/snippets.json```.
