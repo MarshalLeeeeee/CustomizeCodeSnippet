@@ -12,7 +12,15 @@ A python script that helps developer to customize snippet configuration easily. 
 
 # Usage
 Enjoy a quick start with the following steps:
- - Install ```vscode/xxx.vsix``` in vscode.
- - [Optional] Configure snippet path (absolute path) in plugin Settings (```@ext:undefined_publisher.customizecodesnippet```). By default, ```[ extension_path ]/snippets.json``` is loaded.
- - [Customization] Edit ```generator/snippets.yaml``` like the existing examples. Run ```python ./generator/generator.py``` to output ```generator/vscode/snippets.json``` and documentation ```generator/doc/snippets.md```.
- - Update your customized ```snippets.json``` with your configed snippet path (or the default one).
+
+## Puglin preperation
+Install ```./vscode/xxx.vsix``` in vscode.
+
+## Puglin configuration (optional)
+Configure snippet path (absolute path) in plugin Settings (```@ext:undefined_publisher.customizecodesnippet```). By default, the snippet path is  ```[ extension_path ]/snippets.json```.
+
+## Generator requirement
+Run ```pip install -r requirements.txt``` in ```./generator```
+
+## Customization with generator
+Edit ```./generator/snippets.yaml``` like the existing examples. Run ```python ./generator/generator.py``` to output ```./generator/vscode/snippets.json``` and documentation ```./generator/doc/snippets.md```. Replace your configurated snippet path (or the default one) with ```./generator/vscode/snippets.json```
